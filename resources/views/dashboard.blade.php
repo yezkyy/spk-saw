@@ -9,17 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">Data Alternatif</h3>
-                <div class="mb-4">
-                    <a href="{{ route('alternatif.create') }}" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Tambah Alternatif</a>
-                    <a href="{{ route('kriteria.create') }}" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 ml-2">Tambah Kriteria</a>
-                    <a href="{{ route('nilai_alternatif.create') }}" class="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 ml-2">Tambah Nilai Alternatif</a>
-                </div>
                 <table class="w-full border-collapse border border-gray-300 dark:border-gray-700">
                     <thead>
                         <tr class="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
                             <th class="border p-2">No</th>
                             <th class="border p-2">Nama Alternatif</th>
                             <th class="border p-2">Hasil SAW</th>
+                            <th class="border p-2">Ranking</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +24,7 @@
                             <td class="border p-2">{{ $key + 1 }}</td>
                             <td class="border p-2">{{ $alt->nama }}</td>
                             <td class="border p-2">{{ number_format($alt->nilai_saw, 4) }}</td>
+                            <td class="border p-2">{{ $key + 1 }}</td>
                         </tr>
                         @endforeach
                     </tbody>

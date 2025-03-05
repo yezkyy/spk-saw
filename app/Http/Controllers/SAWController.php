@@ -11,10 +11,11 @@ class SAWController extends Controller
 {
     public function index()
     {
+        // Ambil data alternatif, kriteria, dan nilai alternatif
         $alternatifs = Alternatif::all();
         $kriterias = Kriteria::all();
         $nilaiAlternatifs = NilaiAlternatif::all();
-    
+
         // 1. Normalisasi Matrix
         $normalisasi = [];
         foreach ($kriterias as $kriteria) {
@@ -44,12 +45,14 @@ class SAWController extends Controller
             }
             $hasilSAW[$alt->id] = $total;
         }
-    
+
+        // 3. Sorting hasil SAW
         arsort($hasilSAW);
         foreach ($alternatifs as $alt) {
             $alt->nilai_saw = $hasilSAW[$alt->id] ?? 0;
         }
-    
+
+        // Passing data ke view
         return view('dashboard', compact('alternatifs'));
     }
-}    
+}
