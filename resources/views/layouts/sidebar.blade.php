@@ -7,10 +7,13 @@
                     <a href="{{ route('dashboard') }}" class="block p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Dashboard</a>
                 </li>
                 <li class="mb-2">
-                    <a href="#" class="block p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Data Alternatif</a>
+                    <a href="{{ route('alternatif.index') }}" class="block p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Data Alternatif</a>
                 </li>
                 <li class="mb-2">
-                    <a href="#" class="block p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Data Kriteria</a>
+                    <a href="{{ route('kriteria.index') }}" class="block p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Data Kriteria</a>
+                </li>
+                <li class="mb-2">
+                    <a href="{{ route('nilai_alternatif.index') }}" class="block p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Nilai Alternatif</a>
                 </li>
                 <li class="mb-2">
                     <a href="#" class="block p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Perhitungan SAW</a>

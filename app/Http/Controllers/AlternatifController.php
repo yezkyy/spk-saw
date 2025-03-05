@@ -20,11 +20,17 @@ class AlternatifController extends Controller
 
     public function store(Request $request)
     {
+        // Validasi input
         $request->validate([
-            'nama' => 'required|string|max:255'
+            'nama' => 'required|string|max:255',
+            // tambahkan validasi lain jika perlu
         ]);
 
-        Alternatif::create($request->all());
+        // Simpan data alternatif
+        Alternatif::create([
+            'nama' => $request->nama,
+            // tambahkan data lain yang diperlukan
+        ]);
 
         return redirect()->route('alternatif.index')->with('success', 'Alternatif berhasil ditambahkan.');
     }
@@ -36,18 +42,26 @@ class AlternatifController extends Controller
 
     public function update(Request $request, Alternatif $alternatif)
     {
+        // Validasi input
         $request->validate([
-            'nama' => 'required|string|max:255'
+            'nama' => 'required|string|max:255',
+            // tambahkan validasi lain jika perlu
         ]);
 
-        $alternatif->update($request->all());
+        // Update data alternatif
+        $alternatif->update([
+            'nama' => $request->nama,
+            // tambahkan data lain yang diperlukan
+        ]);
 
         return redirect()->route('alternatif.index')->with('success', 'Alternatif berhasil diperbarui.');
     }
 
     public function destroy(Alternatif $alternatif)
     {
+        // Hapus data alternatif
         $alternatif->delete();
+
         return redirect()->route('alternatif.index')->with('success', 'Alternatif berhasil dihapus.');
     }
 }

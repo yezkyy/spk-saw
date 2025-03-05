@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alternatif extends Model {
     use HasFactory;
-    protected $fillable = ['nama'];
+    protected $fillable = ['nama', 'deskripsi'];
 
     public function nilaiAlternatifs() {
         return $this->hasMany(NilaiAlternatif::class);
