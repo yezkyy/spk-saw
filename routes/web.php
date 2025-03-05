@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SAWController;
+use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\KriteriaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,3 +19,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::resource('alternatif', AlternatifController::class)->middleware('auth');
+Route::resource('kriteria', KriteriaController::class)->middleware('auth');
