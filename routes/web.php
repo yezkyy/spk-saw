@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SAWController;
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\NilaiAlternatifController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,3 +23,4 @@ require __DIR__.'/auth.php';
 
 Route::resource('alternatif', AlternatifController::class)->middleware('auth');
 Route::resource('kriteria', KriteriaController::class)->middleware('auth');
+Route::resource('nilai_alternatif', NilaiAlternatifController::class)->middleware('auth');

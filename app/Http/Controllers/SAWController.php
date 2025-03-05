@@ -14,7 +14,7 @@ class SAWController extends Controller
         $alternatifs = Alternatif::all();
         $kriterias = Kriteria::all();
         $nilaiAlternatifs = NilaiAlternatif::all();
-
+    
         // 1. Normalisasi Matrix
         $normalisasi = [];
         foreach ($kriterias as $kriteria) {
@@ -23,31 +23,33 @@ class SAWController extends Controller
             
             foreach ($alternatifs as $alt) {
                 $nilai = $nilaiAlternatifs->where('alternatif_id', $alt->id)->where('kriteria_id', $kriteria->id)->first();
-                
-                if ($kriteria->jenis == 'benefit') {
-                    $normalisasi[$alt->id][$kriteria->id] = $nilai->nilai / $nilaiMax;
-                } else {
-                    $normalisasi[$alt->id][$kriteria->id] = $nilaiMin / $nilai->nilai;
+                if ($nilai) {
+                    if ($kriteria->jenis == 'benefit') {
+                        $normalisasi[$alt->id][$kriteria->id] = $nilai->nilai / $nilaiMax;
+                    } else {
+                        $normalisasi[$alt->id][$kriteria->id] = $nilaiMin / $nilai->nilai;
+                    }
                 }
             }
         }
-
+    
         // 2. Menghitung Bobot Normalisasi
         $hasilSAW = [];
         foreach ($alternatifs as $alt) {
             $total = 0;
             foreach ($kriterias as $kriteria) {
-                $total += $normalisasi[$alt->id][$kriteria->id] * $kriteria->bobot;
+                if (isset($normalisasi[$alt->id][$kriteria->id])) {
+                    $total += $normalisasi[$alt->id][$kriteria->id] * $kriteria->bobot;
+                }
             }
             $hasilSAW[$alt->id] = $total;
         }
-
-        // 3. Menentukan Perangkingan
+    
         arsort($hasilSAW);
         foreach ($alternatifs as $alt) {
-            $alt->nilai_saw = $hasilSAW[$alt->id];
+            $alt->nilai_saw = $hasilSAW[$alt->id] ?? 0;
         }
-
+    
         return view('dashboard', compact('alternatifs'));
     }
-}
+}    
